@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ThreatGuard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-image: url('/static/images/download.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            padding: 0 15px;
+            min-height: 100vh;
+        }
+
+        /* Navbar with animation */
+        .navbar {
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #33aaff, transparent);
+            animation: navbarGlow 3s infinite;
+        }
+
+        @keyframes navbarGlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .navbar h1 {
+            color: #33aaff;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(51, 170, 255, 0.5);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px rgba(51, 170, 255, 0.5); }
+            to { text-shadow: 0 0 20px rgba(51, 170, 255, 0.8); }
+        }
+
+        /* Container with glass morphism effect */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(30, 30, 47, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 153, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 153, 255, 0.3);
+        }
+
+        .container h2 {
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-size: 1.5rem;
+            border-bottom: 1px solid rgba(68, 68, 68, 0.5);
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #33aaff;
+            transition: width 0.5s ease;
+        }
+
+        .container h2:hover::after {
+            width: 100px;
+        }
+
+        .container h3 {
+            color: #66ff99;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(102, 255, 153, 0.3);
+        }
+
+        /* Form elements with animations */
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-size: 0.95rem;
+            color: #bbbbbb;
+            transform: translateX(0);
+        }
+
+        label:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 2px solid rgba(51, 153, 255, 0.5);
+            border-radius: 8px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: linear-gradient(135deg, #33aaff, #3366ff);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: linear-gradient(135deg, #3366ff, #33aaff);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            border-color: #66ff99;
+            box-shadow: 0 0 0 3px rgba(102, 255, 153, 0.3);
+            outline: none;
+        }
+
+        /* Buttons with animations */
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #33aaff, #3366ff);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(51, 170, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(51, 170, 255, 0.4);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button i {
+            margin-right: 8px;
+        }
+
+        /* Result boxes with animations */
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(38, 38, 38, 0.8);
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-box.scam {
+            border-left: 5px solid #ff4d4d;
+            background-color: rgba(42, 26, 26, 0.8);
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.2);
+        }
+
+        .result-box.real {
+            border-left: 5px solid #33cc33;
+            background-color: rgba(26, 42, 26, 0.8);
+            box-shadow: 0 0 15px rgba(51, 204, 51, 0.2);
+        }
+
+        /* Spinner with enhanced animation */
+        .spinner {
+            display: none;
+            margin: 20px auto;
+            width: 35px;
+            height: 35px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #33aaff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: relative;
+        }
+
+        .spinner::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 4px solid transparent;
+            border-top: 4px solid #66ff99;
+            border-radius: 50%;
+            animation: spinReverse 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 30px 15px;
+                padding: 20px;
+            }
+            
+            .navbar h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>ScamShield</h1>
+    </div>
+    <div class="container">
+        <h2>Scan Files</h2>
+        <form action="/scam/" method="post" enctype="multipart/form-data" onsubmit="showSpinner('fileForm','fileSpinner')">
+            <label for="file">Upload a file (PDF/TXT only)</label>
+            <input type="file" name="file" id="file" required>
+            <button type="submit"><i class="fas fa-search"></i> Analyze</button>
+            <div id="fileSpinner" class="spinner"></div>
+        </form>
+
+        {% if message %}
+            <h3>Results:</h3>
+            <p>{{ message }}</p>
+        {% endif %}
+
+        <h2><i class="fas fa-link"></i> URL Threat Detection</h2>
+        <form action="/predict" method="post" onsubmit="showSpinner('urlForm', 'urlSpinner')">
+            <label for="url">Enter URL:</label>
+            <input type="text" name="url" id="url" placeholder="Enter URL" required>
+            <button type="submit"><i class="fas fa-shield-alt"></i> Classify</button>
+            <div id="urlSpinner" class="spinner"></div>
+        </form>
+        {% if predicted_class %}
+            <div class="result-box {{ predicted_class.lower() }}">
+                <p><strong>URL:</strong> {{ input_url }}</p>
+                <p><strong>Predicted Class:</strong> {{ predicted_class }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function showSpinner(formId, spinnerId) {
+            document.getElementById(spinnerId).style.display = 'block';
+            setTimeout(() => {
+                document.getElementById(spinnerId).style.display = 'none';
+            }, 3000);
+        }
+        
+        // Add animation to result box when it appears
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultBox = document.querySelector('.result-box');
+            if (resultBox) {
+                resultBox.style.animation = 'fadeInUp 0.5s forwards';
+            }
+        });
+    </script>
+</body>
+</html>
